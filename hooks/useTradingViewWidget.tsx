@@ -1,8 +1,5 @@
 "use client";
-
 import { useEffect, useRef } from "react";
-
-// "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
 
 const useTradingViewWidget = (
   scriptUrl: string,
@@ -12,16 +9,15 @@ const useTradingViewWidget = (
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current || containerRef.current.dataset.loaded) {
-      return;
-    }
-
+    if (!containerRef.current) return;
+    if (containerRef.current.dataset.loaded) return;
     containerRef.current.innerHTML = `<div class="tradingview-widget-container__widget" style="width: 100%; height: ${height}px;"></div>`;
 
     const script = document.createElement("script");
     script.src = scriptUrl;
     script.async = true;
     script.innerHTML = JSON.stringify(config);
+
     containerRef.current.appendChild(script);
     containerRef.current.dataset.loaded = "true";
 
@@ -35,5 +31,4 @@ const useTradingViewWidget = (
 
   return containerRef;
 };
-
 export default useTradingViewWidget;

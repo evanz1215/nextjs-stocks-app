@@ -1,5 +1,4 @@
-import React from "react";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import { Controller } from "react-hook-form";
 import {
   Select,
@@ -20,7 +19,10 @@ const SelectField = ({
 }: SelectFieldProps) => {
   return (
     <div className="space-y-2">
-      <Label htmlFor={name}> {label}</Label>
+      <Label htmlFor={name} className="form-label">
+        {label}
+      </Label>
+
       <Controller
         name={name}
         control={control}
@@ -35,8 +37,8 @@ const SelectField = ({
             <SelectContent className="bg-gray-800 border-gray-600 text-white">
               {options.map((option) => (
                 <SelectItem
-                  key={option.value}
                   value={option.value}
+                  key={option.value}
                   className="focus:bg-gray-600 focus:text-white"
                 >
                   {option.label}
@@ -46,9 +48,8 @@ const SelectField = ({
             {error && <p className="text-sm text-red-500">{error.message}</p>}
           </Select>
         )}
-      ></Controller>
+      />
     </div>
   );
 };
-
 export default SelectField;

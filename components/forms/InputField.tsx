@@ -16,7 +16,9 @@ const InputField = ({
 }: FormInputProps) => {
   return (
     <div className="space-y-2">
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={name} className="form-label">
+        {label}
+      </Label>
       <Input
         type={type}
         id={name}
@@ -32,5 +34,4 @@ const InputField = ({
     </div>
   );
 };
-
 export default InputField;
